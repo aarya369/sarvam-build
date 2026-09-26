@@ -1,0 +1,50 @@
+# News Agent configuration
+# Add or edit genres here — each needs a Google News search query and/or
+# direct RSS feed URLs. The `id` is used in the CLI menu and database.
+
+settings:
+  max_articles_per_genre: 10   # how many stories to show per genre
+  cache_minutes: 30           # refetch only if cache is older than this
+  request_timeout: 15         # seconds per HTTP request
+
+genres:
+  - id: india
+    name: India
+    feeds:
+      - "https://news.google.com/rss?hl=en-IN&gl=IN&ceid=IN:en"
+
+  - id: world
+    name: World
+    query: "world news today"
+
+  - id: politics
+    name: Politics
+    query: "India politics"
+
+  - id: business
+    name: Business
+    query: "India business economy news"
+    feeds:
+      - "https://www.thehindu.com/business/Economy/rss/"
+
+  - id: technology
+    name: Technology
+    query: "India technology news"
+    feeds:
+      - "https://www.thehindu.com/sci-tech/technology/rss/"
+
+  - id: sports
+    name: Sports
+    query: "India sports news"
+
+  - id: entertainment
+    name: Entertainment
+    query: "India entertainment news"
+
+  - id: science
+    name: Science
+    query: "latest science news"
+
+  - id: health
+    name: Health
+    query: "India health news"
