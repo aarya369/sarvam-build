@@ -39,13 +39,23 @@ def load_genre_news(genre_dict, limit):
     return processor.process(raw, limit=limit)
 
 
+def _api_key():
+    """Key from Streamlit secrets (cloud) or .env / environment (local)."""
+    try:
+        if "SARVAM_API_KEY" in st.secrets:
+            return st.secrets["SARVAM_API_KEY"]
+    except Exception:
+        pass
+    return get_api_key()
+
+
 cfg = load_config()
 genres = cfg["genres"]
 settings = cfg["settings"]
 limit = settings.get("max_articles_per_genre", 10)
 
 store.init_db()
-llm = summarizer.SarvamLLM(api_key=get_api_key())
+llm = summarizer.SarvamLLM(api_key=_api_key())
 
 st.title("📰 News Agent")
 st.caption("Latest news, fetched live and summarised by AI.")
